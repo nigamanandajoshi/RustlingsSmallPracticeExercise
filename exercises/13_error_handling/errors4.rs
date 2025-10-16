@@ -39,4 +39,4 @@ mod tests {
         );
         assert_eq!(PositiveNonzeroInteger::new(0), Err(CreationError::Zero));
     }
-}
+}//

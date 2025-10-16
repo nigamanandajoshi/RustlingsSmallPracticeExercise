@@ -22,4 +22,4 @@ mod tests {
         // `vec0` can't be accessed anymore because it is moved to `fill_vec`.
         assert_eq!(vec1, vec![22, 44, 66, 88]);
     }
-}
+}//

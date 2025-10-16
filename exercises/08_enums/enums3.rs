@@ -89,4 +89,4 @@ mod tests {
         assert_eq!(state.color, (255, 0, 255));
         assert!(state.quit);
     }
-}
+}//

@@ -8,3 +8,4 @@ fn main() {
     // `call_me` expects an argument.
     call_me(5);
 }
+//

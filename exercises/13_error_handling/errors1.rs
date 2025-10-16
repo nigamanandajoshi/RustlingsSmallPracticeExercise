@@ -34,4 +34,4 @@ mod tests {
             Err("Empty names aren't allowed"),
         );
     }
-}
+}//

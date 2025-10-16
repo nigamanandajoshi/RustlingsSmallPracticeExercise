@@ -22,4 +22,4 @@ mod tests {
         let ans = vec_loop(&input);
         assert_eq!(ans, [4, 8, 12, 16, 20]);
     }
-}
+}//
