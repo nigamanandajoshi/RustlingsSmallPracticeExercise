@@ -1,17 +1,22 @@
-// The trait `AppendBar` has only one function which appends "Bar" to any object
-// implementing this trait.
-trait AppendBar {
-    fn append_bar(self) -> Self;
+trait Licensed {
+    fn licensing_info(&self) -> String {
+        "Default license".to_string()
+    }
 }
 
-impl AppendBar for String {
-    // TODO: Implement `AppendBar` for the type `String`.
+struct SomeSoftware {
+    version_number: i32,
 }
+
+struct OtherSoftware {
+    version_number: String,
+}
+
+impl Licensed for SomeSoftware {}
+impl Licensed for OtherSoftware {}
 
 fn main() {
-    let s = String::from("Foo");
-    let s = s.append_bar();
-    println!("s: {s}");
+    // You can optionally experiment here.
 }
 
 #[cfg(test)]
@@ -19,12 +24,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn is_foo_bar() {
-        assert_eq!(String::from("Foo").append_bar(), "FooBar");
-    }
-
-    #[test]
-    fn is_bar_bar() {
-        assert_eq!(String::from("").append_bar().append_bar(), "BarBar");
+    fn is_licensing_info_the_same() {
+        let licensing_info = "Default license";
+        let some_software = SomeSoftware { version_number: 1 };
+        let other_software = OtherSoftware {
+            version_number: "v2.0.0".to_string(),
+        };
+        assert_eq!(some_software.licensing_info(), licensing_info);
+        assert_eq!(other_software.licensing_info(), licensing_info);
     }
 }

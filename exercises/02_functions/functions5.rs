@@ -1,6 +1,6 @@
-// TODO: Fix the function body without changing the signature.
 fn square(num: i32) -> i32 {
-    num * num;
+    // Removed the semicolon `;` at the end of the line below to implicitly return the result.
+    num * num
 }
 
 fn main() {

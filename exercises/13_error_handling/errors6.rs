@@ -24,8 +24,24 @@ impl ParsePosNonzeroError {
         Self::Creation(err)
     }
 
-    // TODO: Add another error conversion function here.
-    // fn from_parse_int(???) -> Self { ??? }
+    fn from_parse_int(err: ParseIntError) -> Self {
+        Self::ParseInt(err)
+    }
+}
+
+// As an alternative solution, implementing the `From` trait allows for the
+// automatic conversion from a `ParseIntError` into a `ParsePosNonzeroError`
+// using the `?` operator, without the need to call `map_err`.
+//
+// ```
+// let x: i64 = s.parse()?;
+// ```
+//
+// Traits like `From` will be dealt with in later exercises.
+impl From<ParseIntError> for ParsePosNonzeroError {
+    fn from(err: ParseIntError) -> Self {
+        ParsePosNonzeroError::ParseInt(err)
+    }
 }
 
 #[derive(PartialEq, Debug)]
@@ -41,9 +57,10 @@ impl PositiveNonzeroInteger {
     }
 
     fn parse(s: &str) -> Result<Self, ParsePosNonzeroError> {
-        // TODO: change this to return an appropriate error instead of panicking
-        // when `parse()` returns an error.
-        let x: i64 = s.parse().unwrap();
+        // Return an appropriate error instead of panicking when `parse()`
+        // returns an error.
+        let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_parse_int)?;
+        //                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         Self::new(x).map_err(ParsePosNonzeroError::from_creation)
     }
 }
