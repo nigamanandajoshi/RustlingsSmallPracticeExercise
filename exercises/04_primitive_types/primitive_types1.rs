@@ -1,5 +1,5 @@
 // Booleans (`bool`)
-
+// This is a test change
 fn main() {
     let is_morning = true;
     if is_morning {
